@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobNep</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js" 
+    crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h2>All Applications</h2>
+    <div class="mt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Applicant Name</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Active Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for apps in applications %}
+                <tr>
+                    <th scope="row">{{apps.id}}</th>
+                    <td>{{apps.applicant_name}}</td>
+                    <td>{{apps.phone_no}}</td>
+                    <td>{{apps.email}}</td>
+                    <td>{{apps.age}}</td>
+                    <td>{{apps.is_active}}</td>
+                    <td class="d-inline">
+                      <a href="{% url 'retrieve' apps.id %}" role="button" class="btn btn-secondary">View</a>
+                    </td>
+                    <td class="d-inline">
+                      <a href="{% url 'edit' apps.id %}" role="button" class="btn btn-info">Edit</a>
+                    </td>
+                    <td class="d-inline">
+                      <form class="d-inline" action="{% url 'delete' apps.id %}">
+                        <button class="btn btn-danger">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              
+              <!-- <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr> -->
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
